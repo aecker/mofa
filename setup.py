@@ -8,7 +8,7 @@ try:
     from setuptools import setup, Extension
     setup, Extension
 except ImportError:
-    print "failed import"
+    print("failed import")
     from distutils.core import setup
     from distutils.extension import setup, Extension
     setup, Extension
