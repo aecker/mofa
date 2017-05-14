@@ -1,7 +1,7 @@
 #include <Python.h>
 #include <numpy/arrayobject.h>
 
-PyMODINIT_FUNC init_algorithms(void);
+PyMODINIT_FUNC PyInit__algorithms(void);
 static PyObject *algorithms_kmeans(PyObject *self, PyObject *args);
 
 static PyMethodDef module_methods[] = {
@@ -9,13 +9,29 @@ static PyMethodDef module_methods[] = {
     {NULL, NULL, 0, NULL}
 };
 
+static struct PyModuleDef cModPyDem =
+{
+    PyModuleDef_HEAD_INIT,
+    "_algorithms", /* name of module */
+    "",          /* module documentation, may be NULL */
+    -1,          /* size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
+    module_methods
+};
+
+PyMODINIT_FUNC PyInit__algorithms(void)
+{
+    return PyModule_Create(&cModPyDem);
+}
+
+/*
 PyMODINIT_FUNC init_algorithms(void)
 {
     PyObject *m = Py_InitModule("_algorithms", module_methods);
     if (m == NULL)
         return;
-    import_array(); /* Load NumPy */
+    import_array(); // Load NumPy
 }
+*/
 
 static PyObject *algorithms_kmeans(PyObject *self, PyObject *args)
 {
